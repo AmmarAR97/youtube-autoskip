@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Auto-Skip Settings</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      align-items: center;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .intro-settings {
+      margin-top: 20px;
+    }
+    .intro-input {
+      display: flex;
+      margin-top: 10px;
+    }
+    .intro-input input {
+      flex-grow: 1;
+      margin-right: 10px;
+      padding: 5px;
+    }
+    button {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .custom-intro-list {
+      margin-top: 15px;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    .custom-intro-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 2px 6px;
+      cursor: pointer;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>YouTube Auto-Skip Settings</h1>
+  
+  <div class="toggle-container">
+    <span>Skip Ads</span>
+    <label class="switch">
+      <input type="checkbox" id="skipAds">
+      <span class="slider"></span>
+    </label>
+  </div>
+  
+  <div class="toggle-container">
+    <span>Skip Intros</span>
+    <label class="switch">
+      <input type="checkbox" id="skipIntros">
+      <span class="slider"></span>
+    </label>
+  </div>
+  
+  <div class="intro-settings">
+    <h2>Custom Intro Times</h2>
+    <div class="intro-input">
+      <input type="text" id="videoUrl" placeholder="Paste YouTube video URL">
+      <input type="number" id="introLength" placeholder="Intro length (sec)" min="0" max="300" style="width: 100px;">
+    </div>
+    <div class="intro-input">
+      <button id="addCustomIntro">Add Custom Intro</button>
+    </div>
+    
+    <div class="custom-intro-list" id="customIntroList">
+      <!-- Custom intro items will be added here -->
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
